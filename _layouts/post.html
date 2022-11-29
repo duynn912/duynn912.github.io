@@ -1,53 +1,51 @@
 ---
 layout: default
 ---
+<div id="main">
+  <article>
+    <header>
+      <h1 class="post-title">{{ page.title }}</h1>
+      <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+    </header>
 
-<article class="post">
-  <h1 class="post-title">{{ page.title }}</h1>
-  <div class="post-meta">
-    {%- assign date_format = site.date_format | default: "%-d %b %Y" -%}
-    <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: date_format }}</time>
-    {%- if page.last_modified_at -%}
-      <span> ~ </span>
-      {%- assign mdate = page.last_modified_at | date_to_xmlschema -%}
-      <time datetime="{{ mdate }}" itemprop="dateModified">
-        {{ mdate | date: date_format }}
-      </time>
-    {%- endif -%}
-    {%- if page.author -%}
-      <span> • </span>
-      {% for author in page.author %}
-        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-          {{ author }}
-        </span>
-        {%- if forloop.last == false %}, {% endif -%}
-      {% endfor %}
-    {%- endif -%}
-  </div>
+    <section>
+      {{ content }}
+    </section>
 
-  {{ content }}
+    <footer>
+      <div class="row">
+      {% if page.previous %}
+        <article class="{% cycle '6u', '6u$' %} 12u(small) excerpt">
+          <header>
+            <h2><a href="{{ page.previous.url }}">{{ page.previous.title }}</a></h2>
+          </header>
+          <section>
+            {{ page.previous.excerpt }}
+          </section>
+          <footer>
+            <ul class="actions">
+              <li><a href="{{ page.previous.url }}" class="button">Read More</a></li>
+            </ul>
+          </footer>
+        </article>
+      {% endif %}
 
-  {% if page.tags %}
-    {% include post-tags.html %}
-  {% endif %}
-
-  {% if jekyll.environment == "production" and site.disqus and page.comments != false %}
-    {% include disqus.html %}
-  {% endif %}
-</article>
-
-{% if site.related_posts != empty %}
-<aside class="related">
-  <h2>Related posts</h2>
-  <ul class="related-posts">
-    {% for post in site.related_posts limit:3 %}
-      <li>
-        <a href="{{ post.url | relative_url }}">
-          {{ post.title }}
-          <small><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time></small>
-        </a>
-      </li>
-    {% endfor %}
-  </ul>
-</aside>
-{% endif %}
+      {% if page.next %}
+        <article class="{% cycle '6u', '6u$' %} 12u(small) excerpt f-right">
+          <header>
+            <h2><a href="{{ page.next.url }}">{{ page.next.title }}</a></h2>
+          </header>
+          <section>
+            {{ page.next.excerpt | markdownify }}
+          </section>
+          <footer>
+            <ul class="actions">
+              <li><a href="{{ page.next.url }}" class="button">Read More</a></li>
+            </ul>
+          </footer>
+        </article>
+      {% endif %}
+      </div>
+    </footer>
+  </article>
+</div>
