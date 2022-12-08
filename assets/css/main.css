@@ -35,6 +35,11 @@ body {
 
 ol, ul {
 	list-style: none;
+	color: black;
+}
+
+p {
+	color: black;
 }
 
 blockquote, q {
@@ -2142,12 +2147,17 @@ input, select, textarea {
 			}
 
 			.image.avatar img {
+				vertical-align: middle;
+				width: 500px;
+				height: 500px;
 				border-radius: 100%;
-				width: 200px;
-				height: 200px;
-				
+				/*width: 100%;*/				
 			}
-
+		.responsive {
+			width: 100%;
+			max-width: 400px;
+			height: auto;
+		}
 /* List */
 
 	ol {
@@ -2641,8 +2651,8 @@ input, select, textarea {
 		}
 
 		#header .image.avatar {
-			margin: 0 0 1em 0;
-			width: 6.25em;
+			margin: 0 0 0em 0;
+			/*width: 6.25em;*/
 		}
 
 /* Footer */
