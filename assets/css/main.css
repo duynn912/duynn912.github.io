@@ -2140,6 +2140,7 @@ input, select, textarea {
 
 		.image.avatar {
 			border-radius: 100%;
+			width: 100%
 		}
 
 			.image.avatar:before {
@@ -2148,10 +2149,8 @@ input, select, textarea {
 
 			.image.avatar img {
 				vertical-align: middle;
-				width: 500px;
-				height: 500px;
 				border-radius: 100%;
-				/*width: 100%;*/				
+				width: 100%;				
 			}
 		.responsive {
 			width: 100%;
